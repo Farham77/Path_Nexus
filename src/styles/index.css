@@ -1,0 +1,57 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for PATH NEXUS */
+:root {
+  --cell-size: 28px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+  gap: 4px;
+}
+
+/* smooth hover transition */
+.cell {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* visited node pulse animation to highlight exploration */
+@keyframes visitedPulse {
+  0% { box-shadow: 0 0 0 0 rgba(96,165,250, 0.6); }
+  70% { box-shadow: 0 0 18px 6px rgba(124,58,237, 0.05); }
+  100% { box-shadow: 0 0 0 0 rgba(96,165,250, 0); }
+}
+
+.visited-pulse {
+  animation: visitedPulse 1.4s ease-in-out infinite;
+}
+
+/* Responsive cell sizes (smaller on mobile, larger on desktop) */
+@media (max-width: 640px) {
+  :root { --cell-size: 18px; }
+  .grid-container { gap: 3px; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  :root { --cell-size: 22px; }
+}
+@media (min-width: 1025px) {
+  :root { --cell-size: 28px; }
+}
+
+/* Make grid content shrink-wrap and scroll on small viewports */
+.grid-container { width: fit-content; }
+
+/* Improve touch target and readability on small screens */
+.cell {
+  min-width: var(--cell-size);
+  min-height: var(--cell-size);
+  touch-action: manipulation;
+}
