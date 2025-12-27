@@ -106,7 +106,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="text-xs text-gray-400">Designed for Discrete Mathematics demos  Ready to deploy on Vercel</footer>
+      <footer className="text-xs text-gray-400"></footer>
     </div>
   )
 }
